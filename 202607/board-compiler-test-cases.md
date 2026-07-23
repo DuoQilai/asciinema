@@ -399,13 +399,13 @@ Illegal instruction (core dumped)
 | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
 | 1. | 安装系统依赖包：<br><br>sudo apt update; sudo apt install -y wget tar zstd xz-utils git build-essential | 成功安装 |
 | 2. | 安装ruyi包管理器（版本0.50.0）：<br><br>wget https://mirror.iscas.ac.cn/ruyisdk/ruyi/tags/0.50.0/ruyi-0.50.0.riscv64<br><br>chmod +x ./ruyi-0.50.0.riscv64<br><br>sudo cp -v ./ruyi-0.50.0.riscv64 /usr/local/bin/ruyi | 成功安装 |
-| 3. | 安装GCC和LLVM工具链：<br><br>ruyi update<br><br>ruyi install gnu-plct<br><br>ruyi install llvm-plct | 成功安装 |
-| 4. | 创建并激活ruyi虚拟环境（GCC）：<br><br>ruyi venv -t gnu-plct manual venv-gnu-plct-jupiter2<br><br>. venv-gnu-plct-jupiter2/bin/ruyi-activate | 成功创建并激活虚拟环境 |
-| 5. | 验证GCC版本：<br><br>riscv64-plct-linux-gnu-gcc -v | 输出版本号 |
-| 6. | 编译并运行Hello World（GCC）：<br><br>cat << EOF > hello.c<br>#include <stdio.h><br>int main() {<br>    printf("Hello, World!\\n");<br>    return 0;<br>}<br>EOF<br>riscv64-plct-linux-gnu-gcc hello.c -o hello-gcc<br>./hello-gcc | 输出Hello, World! |
-| 7. | 编译并运行coremark（GCC）：<br><br>git clone https://github.com/eembc/coremark<br>cd coremark<br># 具体ISA扩展可通过 cat /proc/cpuinfo \| grep -i isa 查询，编译参数以板端ISA信息和工具链支持情况为准<br>make CC=riscv64-plct-linux-gnu-gcc XCFLAGS="-march=rv64gcv -O2" compile<br>mv coremark.exe coremark-gcc<br>./coremark-gcc | 输出coremark结果 |
+| 3. | 安装GCC和LLVM工具链：<br><br>ruyi update<br><br>ruyi install gnu-ruyisdk=0.20260625.0<br><br>ruyi install llvm-ruyisdk=22.1.8-ruyi.20260625 | 成功安装 |
+| 4. | 创建并激活ruyi虚拟环境（GCC）：<br><br>ruyi venv -t gnu-ruyisdk manual venv-gnu-ruyisdk-jupiter2<br><br>. venv-gnu-ruyisdk-jupiter2/bin/ruyi-activate | 成功创建并激活虚拟环境 |
+| 5. | 验证GCC版本：<br><br>riscv64-ruyisdk-linux-gnu-gcc -v | 输出版本号 |
+| 6. | 编译并运行Hello World（GCC）：<br><br>cat << EOF > hello.c<br>#include <stdio.h><br>int main() {<br>    printf("Hello, World!\\n");<br>    return 0;<br>}<br>EOF<br>riscv64-ruyisdk-linux-gnu-gcc hello.c -o hello-gcc<br>./hello-gcc | 输出Hello, World! |
+| 7. | 编译并运行coremark（GCC）：<br><br>git clone https://github.com/eembc/coremark<br>cd coremark<br># 具体ISA扩展可通过 cat /proc/cpuinfo \| grep -i isa 查询，编译参数以板端ISA信息和工具链支持情况为准<br>make CC=riscv64-ruyisdk-linux-gnu-gcc XCFLAGS="-march=rv64gcv -O2" compile<br>mv coremark.exe coremark-gcc<br>./coremark-gcc | 输出coremark结果 |
 | 8. | 返回上级目录并退出ruyi GCC虚拟环境：<br><br>cd ..; ruyi-deactivate | 成功退出虚拟环境 |
-| 9. | 创建并激活ruyi虚拟环境（LLVM）：<br><br>ruyi venv -t llvm-plct manual --sysroot-from gnu-plct venv-llvm-plct-jupiter2<br><br>. venv-llvm-plct-jupiter2/bin/ruyi-activate | 成功创建并激活虚拟环境 |
+| 9. | 创建并激活ruyi虚拟环境（LLVM）：<br><br>ruyi venv -t llvm-ruyisdk manual --sysroot-from gnu-ruyisdk venv-llvm-ruyisdk-jupiter2<br><br>. venv-llvm-ruyisdk-jupiter2/bin/ruyi-activate | 成功创建并激活虚拟环境 |
 | 10. | 验证LLVM版本：<br><br>clang -v | 输出版本号 |
 | 11. | 编译并运行Hello World（LLVM）：<br><br>clang hello.c -o hello-llvm; ./hello-llvm | 输出Hello, World! |
 | 12. | 编译coremark（LLVM）：<br><br># 具体ISA扩展可通过 cat /proc/cpuinfo \| grep -i isa 查询，编译参数以板端ISA信息和工具链支持情况为准<br>cd coremark; make clean; make CC=clang XCFLAGS="-march=rv64gcv -O2" compile<br>mv coremark.exe coremark-llvm<br>./coremark-llvm | 输出coremark结果 |
@@ -428,13 +428,13 @@ Illegal instruction (core dumped)
 | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
 | 1. | 安装系统依赖包：<br><br>sudo apt update; sudo apt install -y wget tar zstd xz-utils git build-essential | 成功安装 |
 | 2. | 安装ruyi包管理器（版本0.50.0）：<br><br>wget https://mirror.iscas.ac.cn/ruyisdk/ruyi/tags/0.50.0/ruyi-0.50.0.riscv64<br><br>chmod +x ./ruyi-0.50.0.riscv64<br><br>sudo cp -v ./ruyi-0.50.0.riscv64 /usr/local/bin/ruyi | 成功安装 |
-| 3. | 安装GCC和LLVM工具链：<br><br>ruyi update<br><br>ruyi install gnu-plct<br><br>ruyi install llvm-plct | 成功安装 |
-| 4. | 创建并激活ruyi虚拟环境（GCC）：<br><br>ruyi venv -t gnu-plct manual venv-gnu-plct-com260<br><br>. venv-gnu-plct-com260/bin/ruyi-activate | 成功创建并激活虚拟环境 |
-| 5. | 验证GCC版本：<br><br>riscv64-plct-linux-gnu-gcc -v | 输出版本号 |
-| 6. | 编译并运行Hello World（GCC）：<br><br>cat << EOF > hello.c<br>#include <stdio.h><br>int main() {<br>    printf("Hello, World!\\n");<br>    return 0;<br>}<br>EOF<br>riscv64-plct-linux-gnu-gcc hello.c -o hello-gcc<br>./hello-gcc | 输出Hello, World! |
-| 7. | 编译并运行coremark（GCC）：<br><br>git clone https://github.com/eembc/coremark<br>cd coremark<br># 具体ISA扩展可通过 cat /proc/cpuinfo \| grep -i isa 查询，编译参数以板端ISA信息和工具链支持情况为准<br>make CC=riscv64-plct-linux-gnu-gcc XCFLAGS="-march=rv64gcv -O2" compile<br>mv coremark.exe coremark-gcc<br>./coremark-gcc | 输出coremark结果 |
+| 3. | 安装GCC和LLVM工具链：<br><br>ruyi update<br><br>ruyi install gnu-ruyisdk=0.20260625.0<br><br>ruyi install llvm-ruyisdk=22.1.8-ruyi.20260625 | 成功安装 |
+| 4. | 创建并激活ruyi虚拟环境（GCC）：<br><br>ruyi venv -t gnu-ruyisdk manual venv-gnu-ruyisdk-com260<br><br>. venv-gnu-ruyisdk-com260/bin/ruyi-activate | 成功创建并激活虚拟环境 |
+| 5. | 验证GCC版本：<br><br>riscv64-ruyisdk-linux-gnu-gcc -v | 输出版本号 |
+| 6. | 编译并运行Hello World（GCC）：<br><br>cat << EOF > hello.c<br>#include <stdio.h><br>int main() {<br>    printf("Hello, World!\\n");<br>    return 0;<br>}<br>EOF<br>riscv64-ruyisdk-linux-gnu-gcc hello.c -o hello-gcc<br>./hello-gcc | 输出Hello, World! |
+| 7. | 编译并运行coremark（GCC）：<br><br>git clone https://github.com/eembc/coremark<br>cd coremark<br># 具体ISA扩展可通过 cat /proc/cpuinfo \| grep -i isa 查询，编译参数以板端ISA信息和工具链支持情况为准<br>make CC=riscv64-ruyisdk-linux-gnu-gcc XCFLAGS="-march=rv64gcv -O2" compile<br>mv coremark.exe coremark-gcc<br>./coremark-gcc | 输出coremark结果 |
 | 8. | 返回上级目录并退出ruyi GCC虚拟环境：<br><br>cd ..; ruyi-deactivate | 成功退出虚拟环境 |
-| 9. | 创建并激活ruyi虚拟环境（LLVM）：<br><br>ruyi venv -t llvm-plct manual --sysroot-from gnu-plct venv-llvm-plct-com260<br><br>. venv-llvm-plct-com260/bin/ruyi-activate | 成功创建并激活虚拟环境 |
+| 9. | 创建并激活ruyi虚拟环境（LLVM）：<br><br>ruyi venv -t llvm-ruyisdk manual --sysroot-from gnu-ruyisdk venv-llvm-ruyisdk-com260<br><br>. venv-llvm-ruyisdk-com260/bin/ruyi-activate | 成功创建并激活虚拟环境 |
 | 10. | 验证LLVM版本：<br><br>clang -v | 输出版本号 |
 | 11. | 编译并运行Hello World（LLVM）：<br><br>clang hello.c -o hello-llvm; ./hello-llvm | 输出Hello, World! |
 | 12. | 编译coremark（LLVM）：<br><br># 具体ISA扩展可通过 cat /proc/cpuinfo \| grep -i isa 查询，编译参数以板端ISA信息和工具链支持情况为准<br>cd coremark; make clean; make CC=clang XCFLAGS="-march=rv64gcv -O2" compile<br>mv coremark.exe coremark-llvm<br>./coremark-llvm | 输出coremark结果 |
@@ -457,13 +457,13 @@ Illegal instruction (core dumped)
 | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
 | 1. | 安装系统依赖包：<br><br>sudo apt update; sudo apt install -y wget tar zstd xz-utils git build-essential | 成功安装 |
 | 2. | 安装ruyi包管理器（版本0.50.0）：<br><br>wget https://mirror.iscas.ac.cn/ruyisdk/ruyi/tags/0.50.0/ruyi-0.50.0.riscv64<br><br>chmod +x ./ruyi-0.50.0.riscv64<br><br>sudo cp -v ./ruyi-0.50.0.riscv64 /usr/local/bin/ruyi | 成功安装 |
-| 3. | 安装GCC和LLVM工具链：<br><br>ruyi update<br><br>ruyi install gnu-plct<br><br>ruyi install llvm-plct | 成功安装 |
-| 4. | 创建并激活ruyi虚拟环境（GCC）：<br><br>ruyi venv -t gnu-plct manual venv-gnu-plct-k3<br><br>. venv-gnu-plct-k3/bin/ruyi-activate | 成功创建并激活虚拟环境 |
-| 5. | 验证GCC版本：<br><br>riscv64-plct-linux-gnu-gcc -v | 输出版本号 |
-| 6. | 编译并运行Hello World（GCC）：<br><br>cat << EOF > hello.c<br>#include <stdio.h><br>int main() {<br>    printf("Hello, World!\\n");<br>    return 0;<br>}<br>EOF<br>riscv64-plct-linux-gnu-gcc hello.c -o hello-gcc<br>./hello-gcc | 输出Hello, World! |
-| 7. | 编译并运行coremark（GCC）：<br><br>git clone https://github.com/eembc/coremark<br>cd coremark<br># 具体ISA扩展可通过 cat /proc/cpuinfo \| grep -i isa 查询，编译参数以板端ISA信息和工具链支持情况为准<br>make CC=riscv64-plct-linux-gnu-gcc XCFLAGS="-march=rv64gcv -O2" compile<br>mv coremark.exe coremark-gcc<br>./coremark-gcc | 输出coremark结果 |
+| 3. | 安装GCC和LLVM工具链：<br><br>ruyi update<br><br>ruyi install gnu-ruyisdk=0.20260625.0<br><br>ruyi install llvm-ruyisdk=22.1.8-ruyi.20260625 | 成功安装 |
+| 4. | 创建并激活ruyi虚拟环境（GCC）：<br><br>ruyi venv -t gnu-ruyisdk manual venv-gnu-ruyisdk-k3<br><br>. venv-gnu-ruyisdk-k3/bin/ruyi-activate | 成功创建并激活虚拟环境 |
+| 5. | 验证GCC版本：<br><br>riscv64-ruyisdk-linux-gnu-gcc -v | 输出版本号 |
+| 6. | 编译并运行Hello World（GCC）：<br><br>cat << EOF > hello.c<br>#include <stdio.h><br>int main() {<br>    printf("Hello, World!\\n");<br>    return 0;<br>}<br>EOF<br>riscv64-ruyisdk-linux-gnu-gcc hello.c -o hello-gcc<br>./hello-gcc | 输出Hello, World! |
+| 7. | 编译并运行coremark（GCC）：<br><br>git clone https://github.com/eembc/coremark<br>cd coremark<br># 具体ISA扩展可通过 cat /proc/cpuinfo \| grep -i isa 查询，编译参数以板端ISA信息和工具链支持情况为准<br>make CC=riscv64-ruyisdk-linux-gnu-gcc XCFLAGS="-march=rv64gcv -O2" compile<br>mv coremark.exe coremark-gcc<br>./coremark-gcc | 输出coremark结果 |
 | 8. | 返回上级目录并退出ruyi GCC虚拟环境：<br><br>cd ..; ruyi-deactivate | 成功退出虚拟环境 |
-| 9. | 创建并激活ruyi虚拟环境（LLVM）：<br><br>ruyi venv -t llvm-plct manual --sysroot-from gnu-plct venv-llvm-plct-k3<br><br>. venv-llvm-plct-k3/bin/ruyi-activate | 成功创建并激活虚拟环境 |
+| 9. | 创建并激活ruyi虚拟环境（LLVM）：<br><br>ruyi venv -t llvm-ruyisdk manual --sysroot-from gnu-ruyisdk venv-llvm-ruyisdk-k3<br><br>. venv-llvm-ruyisdk-k3/bin/ruyi-activate | 成功创建并激活虚拟环境 |
 | 10. | 验证LLVM版本：<br><br>clang -v | 输出版本号 |
 | 11. | 编译并运行Hello World（LLVM）：<br><br>clang hello.c -o hello-llvm; ./hello-llvm | 输出Hello, World! |
 | 12. | 编译coremark（LLVM）：<br><br># 具体ISA扩展可通过 cat /proc/cpuinfo \| grep -i isa 查询，编译参数以板端ISA信息和工具链支持情况为准<br>cd coremark; make clean; make CC=clang XCFLAGS="-march=rv64gcv -O2" compile<br>mv coremark.exe coremark-llvm<br>./coremark-llvm | 输出coremark结果 |
