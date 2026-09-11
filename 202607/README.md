@@ -22,8 +22,8 @@ Word 版测试用例文档：[10种开发板+编译器测试用例.docx](10种�
 | 3 | ESWIN EBC7702 | `examples/03-ebc7702.sh` | [照片 1](boards_test_env_photos/3.ebc7702.jpg)、[照片 2](<boards_test_env_photos/3.ebc7702(2).jpg>) |
 | 4 | SG2044 EVB | `examples/04-sg2044.sh` | — |
 | 5 | A210 SODIMM V2 | `examples/05-a210-v2.sh` | [照片](boards_test_env_photos/5.a210-v2.jpg) |
-| 6 | VisionFive 2 Lite | `examples/06-vf2-lite.sh` | — |
-| 7 | Canaan K510 CRB-V1.2 KIT | `examples/07-k510.sh` | — |
+| 6 | VisionFive 2 Lite | `examples/06-vf2-lite.sh` | [照片 1](boards_test_env_photos/6.visionfive2lite.jpg)、[照片 2](<boards_test_env_photos/6.visionfive2lite(2).jpg>) |
+| 7 | Canaan K510 CRB-V1.2 KIT | `examples/07-k510.sh` | [照片 1](boards_test_env_photos/7.K510.jpg)、[照片 2](<boards_test_env_photos/7.K510(2).jpg>) |
 | 8 | Milk-V Megrez | `examples/08-megrez.sh` | — |
 | 9 | RISC-V Book | `examples/09-rvbook.sh` | [照片 1](boards_test_env_photos/9.ruyibook.jpg)、[照片 2](<boards_test_env_photos/9.ruyibook(2).jpg>) |
 | 10 | RISC-V Book 2 | `examples/10-rvbook2.sh` | [照片 1](boards_test_env_photos/10.rvbook2.jpg)、[照片 2](<boards_test_env_photos/10.rvbook2(2).jpg>) |
