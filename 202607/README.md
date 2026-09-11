@@ -19,15 +19,14 @@ Word 版测试用例文档：[10种开发板+编译器测试用例.docx](10种�
 | --- | --- | --- | --- |
 | 1 | ESWIN EBC7700 | `examples/01-ebc7700.sh` | — |
 | 2 | HiFive Premier P550 | `examples/02-p550.sh` | — |
-| 3 | ESWIN EBC7702 | `examples/03-ebc7702.sh` | — |
-| 4 | SG2044 EVB | `examples/04-sg2044.sh` | — |
+| 3 | ESWIN EBC7702 | `examples/03-ebc7702.sh` | [照片 1](boards_test_env_photos/3.ebc7702.jpg)、[照片 2](<boards_test_env_photos/3.ebc7702(2).jpg>) |
+| 4 | SG2044 EVB | `examples/04-sg2044.sh` | [照片](boards_test_env_photos/4.sg2044.jpg) |
 | 5 | A210 SODIMM V2 | `examples/05-a210-v2.sh` | [照片](boards_test_env_photos/5.a210-v2.jpg) |
-| 6 | VisionFive 2 Lite | `examples/06-vf2-lite.sh` | — |
-| 7 | Canaan K510 CRB-V1.2 KIT | `examples/07-k510.sh` | — |
+| 6 | VisionFive 2 Lite | `examples/06-vf2-lite.sh` | [照片 1](boards_test_env_photos/6.visionfive2lite.jpg)、[照片 2](<boards_test_env_photos/6.visionfive2lite(2).jpg>) |
+| 7 | Canaan K510 CRB-V1.2 KIT | `examples/07-k510.sh` | [照片 1](boards_test_env_photos/7.K510.jpg)、[照片 2](<boards_test_env_photos/7.K510(2).jpg>) |
 | 8 | Milk-V Megrez | `examples/08-megrez.sh` | — |
 | 9 | RISC-V Book | `examples/09-rvbook.sh` | [照片 1](boards_test_env_photos/9.ruyibook.jpg)、[照片 2](<boards_test_env_photos/9.ruyibook(2).jpg>) |
 | 10 | RISC-V Book 2 | `examples/10-rvbook2.sh` | [照片 1](boards_test_env_photos/10.rvbook2.jpg)、[照片 2](<boards_test_env_photos/10.rvbook2(2).jpg>) |
-| 11 | SpacemiT K3 Pico-ITX | `examples/11-k3.sh` | — |
 
 ## 运行
 
@@ -92,7 +91,7 @@ rm -rf coremark hello.c hello-gcc hello-llvm ruyi-0.50.0.riscv64 venv-*
     └── llvm-coremark.png
 ```
 
-当前已保存用例 1–10 的录制结果；用例 11（SpacemiT K3 Pico-ITX）目前只有测试脚本，尚未收录录制媒体。
+当前已保存用例 1–10 的录制结果。
 
 `snapshots/` 内的图片只使用快照名称，不带 `01-`、`02-` 等序号。重新生成前，
 如果目录中还保留旧的带序号图片，应先清理旧的生成结果。
