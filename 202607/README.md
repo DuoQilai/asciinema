@@ -20,7 +20,7 @@ Word 版测试用例文档：[10种开发板+编译器测试用例.docx](10种�
 | 1 | ESWIN EBC7700 | `examples/01-ebc7700.sh` | — |
 | 2 | HiFive Premier P550 | `examples/02-p550.sh` | — |
 | 3 | ESWIN EBC7702 | `examples/03-ebc7702.sh` | [照片 1](boards_test_env_photos/3.ebc7702.jpg)、[照片 2](<boards_test_env_photos/3.ebc7702(2).jpg>) |
-| 4 | SG2044 EVB | `examples/04-sg2044.sh` | — |
+| 4 | SG2044 EVB | `examples/04-sg2044.sh` | [照片](boards_test_env_photos/4.sg2044.jpg) |
 | 5 | A210 SODIMM V2 | `examples/05-a210-v2.sh` | [照片](boards_test_env_photos/5.a210-v2.jpg) |
 | 6 | VisionFive 2 Lite | `examples/06-vf2-lite.sh` | [照片 1](boards_test_env_photos/6.visionfive2lite.jpg)、[照片 2](<boards_test_env_photos/6.visionfive2lite(2).jpg>) |
 | 7 | Canaan K510 CRB-V1.2 KIT | `examples/07-k510.sh` | [照片 1](boards_test_env_photos/7.K510.jpg)、[照片 2](<boards_test_env_photos/7.K510(2).jpg>) |
