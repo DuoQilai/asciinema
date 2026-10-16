@@ -17,7 +17,7 @@ Word 版测试用例文档：[10种开发板+编译器测试用例.docx](10种�
 
 | 用例 | 开发板 | 脚本 | 测试环境照片 |
 | --- | --- | --- | --- |
-| 1 | ESWIN EBC7700 | `examples/01-ebc7700.sh` | — |
+| 1 | ESWIN EBC7700 | `examples/01-ebc7700.sh` |  [照片 1](boards_test_env_photos/1.ebc7700.jpg)、[照片 2](<boards_test_env_photos/1.ebc7700%EF%BC%882%EF%BC%89.jpg>)  |
 | 2 | HiFive Premier P550 | `examples/02-p550.sh` | [照片 1](boards_test_env_photos/2.Premier_P550.jpg)、[照片 2](<boards_test_env_photos/2.Premier_P550(2).jpg>) |
 | 3 | ESWIN EBC7702 | `examples/03-ebc7702.sh` | [照片 1](boards_test_env_photos/3.ebc7702.jpg)、[照片 2](<boards_test_env_photos/3.ebc7702(2).jpg>) |
 | 4 | SG2044 EVB | `examples/04-sg2044.sh` | [照片](boards_test_env_photos/4.sg2044.jpg) |
