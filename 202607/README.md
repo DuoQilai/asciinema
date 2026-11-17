@@ -27,6 +27,7 @@ Word 版测试用例文档：[10种开发板+编译器测试用例.docx](10种�
 | 8 | Milk-V Megrez | `examples/08-megrez.sh` | — |
 | 9 | RISC-V Book | `examples/09-rvbook.sh` | [照片 1](boards_test_env_photos/9.ruyibook.jpg)、[照片 2](<boards_test_env_photos/9.ruyibook(2).jpg>) |
 | 10 | RISC-V Book 2 | `examples/10-rvbook2.sh` | [照片 1](boards_test_env_photos/10.rvbook2.jpg)、[照片 2](<boards_test_env_photos/10.rvbook2(2).jpg>) |
+| 15 | SpacemiT V100-C2201 | `examples/15-v100.sh` | — |
 
 ## 运行
 
@@ -91,13 +92,15 @@ rm -rf coremark hello.c hello-gcc hello-llvm ruyi-0.50.0.riscv64 venv-*
     └── llvm-coremark.png
 ```
 
-当前已保存用例 1–10 的录制结果。
+当前已保存用例 1–10、15 的录制结果。
 
 `snapshots/` 内的图片只使用快照名称，不带 `01-`、`02-` 等序号。重新生成前，
 如果目录中还保留旧的带序号图片，应先清理旧的生成结果。
 
 ## 特殊脚本
 
+- V100 脚本通过本机 `V100-1` SSH 别名及其跳板机登录，运行目录为
+  `~/v100-case-1-15-20261117`，CoreMark 源码在录制前准备。
 - A210 脚本会通过 `ssh tiaoban` 进入跳板机，再通过 `ssh a210` 进入开发板。
   运行前需确保这两个 SSH 主机别名可用。
 - A210 使用 `~~.` 将 SSH 转义序列传递给内层 SSH，再使用 `exit 0` 正常退出跳板机。

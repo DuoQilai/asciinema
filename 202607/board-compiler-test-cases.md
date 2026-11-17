@@ -16,8 +16,9 @@
 | 12  | Milk-V Jupiter2 Dev Kit     | SpacemiT K3   | X100             | 完成用例       |
 | 13  | K3 CoM260 Kit 16G    | SpacemiT K3   | X100             | 完成用例       |
 | 14  | K3 Pico-ITX 32G     | SpacemiT K3   | X100             | 完成用例       |
+| 15  | SpacemiT V100-C2201 | SpacemiT V100 | Kunminghu V2R2 + X100 | 已实测 |
 
-测试14种RISC-V开发板上GCC和LLVM工具链的测试情况，验证 GCC 和 LLVM 工具链是否能在目标RISC-V开发板上正常安装、编译和运行程序。通过 Hello World 和 Coremark 两个程序验证基本功能和性能。使用 RuyiSDK作为统一的工具链管理工具，确保测试环境的一致性。开发板型号列表如下：
+测试15种RISC-V设备上GCC和LLVM工具链的测试情况，验证 GCC 和 LLVM 工具链是否能在目标RISC-V设备上正常安装、编译和运行程序。通过 Hello World 和 Coremark 两个程序验证基本功能和性能。使用 RuyiSDK作为统一的工具链管理工具，确保测试环境的一致性。设备型号列表如下：
 
 **测试流程为：**
 
@@ -468,3 +469,33 @@ Illegal instruction (core dumped)
 | 11. | 编译并运行Hello World（LLVM）：<br><br>clang hello.c -o hello-llvm; ./hello-llvm | 输出Hello, World! |
 | 12. | 编译coremark（LLVM）：<br><br># 具体ISA扩展可通过 cat /proc/cpuinfo \| grep -i isa 查询，编译参数以板端ISA信息和工具链支持情况为准<br>cd coremark; make clean; make CC=clang XCFLAGS="-march=rv64gcv -O2" compile<br>mv coremark.exe coremark-llvm<br>./coremark-llvm | 输出coremark结果 |
 | 13. | 返回上级目录并退出ruyi LLVM虚拟环境：<br><br>cd ..; ruyi-deactivate | 成功退出虚拟环境 |
+
+
+### 测试用例 1-15：GCC和LLVM对SpacemiT V100-C2201的支持测试
+
+| 字段 | 内容 |
+| --- | --- |
+| 测试用例标识 | 1-15 |
+| 测试用例名称 | GCC和LLVM对SpacemiT V100-C2201的支持测试 |
+| 测试说明 | 验证GCC和LLVM对SpacemiT V100-C2201的支持情况 |
+| 测试用例初始化 | 1. 登录服务器：<br>`ssh V100-1`<br>2. 创建测试目录：<br>`mkdir -p ~/v100-case-1-15-20261117/bin`<br>3. 本次 ISA：<br>`cat /proc/cpuinfo \| grep -i isa`<br>`rv64imafdcvh_zicbom_zicbop_zicboz_ziccrse_zicntr_zicond_zicsr_zifencei_zihintntl_zihintpause_zihpm_zimop_zaamo_zalrsc_zawrs_zfa_zfbfmin_zfh_zfhmin_zca_zcb_zcd_zcmop_zba_zbb_zbc_zbs_zkt_zvbb_zvbc_zve32f_zve32x_zve64d_zve64f_zve64x_zvfbfmin_zvfbfwma_zvfh_zvfhmin_zvkb_zvkg_zvkned_zvknhb_zvksed_zvksh_zvkt_smaia_smstateen_ssaia_sscofpmf_ssnpm_sstc_svade_svinval_svnapot_svpbmt` |
+| 前提与约束 | 开发板系统烧录已完成且已成功通过终端登录；开发板有可用的有线网络连接 |
+| 终止条件 | 测试用例全部通过 |
+
+**测试步骤：**
+
+| 序号 | 输入及操作说明 | 期望测试结果 |
+| --- | --- | --- |
+| 1 | 安装依赖包<br>`sudo apt update; sudo apt install -y curl tar zstd xz-utils git build-essential` | 成功安装 |
+| 2 | 安装ruyi包管理器<br>`cd ~/v100-case-1-15-20261117`<br>`curl -fL https://github.com/ruyisdk/ruyi/releases/download/0.54.0/ruyi-0.54.0.riscv64 -o bin/ruyi`<br>`printf '%s  %s\n' '3b747f6f9ce014132ad4af9b4b5f39c8b45840f7a55a6762f80f0089e5e66277' 'bin/ruyi' \| sha256sum -c -`<br>`chmod +x bin/ruyi`<br>`export PATH="$PWD/bin:$PATH"`<br>`ruyi version` | 成功安装 |
+| 3 | 安装GCC和LLVM工具链<br>`ruyi update`<br>`ruyi install 'gnu-ruyisdk(0.20260625.0)' 'llvm-ruyisdk(22.1.8-ruyi.20260625)'` | 成功安装 |
+| 4 | 创建并激活ruyi虚拟环境（GCC）<br>`ruyi venv -t 'gnu-ruyisdk(0.20260625.0)' manual gcc-env`<br>`. gcc-env/bin/ruyi-activate` | 成功创建并激活虚拟环境 |
+| 5 | 验证GCC版本<br>`riscv64-ruyisdk-linux-gnu-gcc --version` | 输出版本号 |
+| 6 | 编译并运行Hello World（GCC）<br>`cat > hello.c <<'EOF'`<br>`#include <stdio.h>`<br>`int main(void) {`<br>`    puts("Hello, World!");`<br>`    return 0;`<br>`}`<br>`EOF`<br>`riscv64-ruyisdk-linux-gnu-gcc -march=rv64imafdcvh_zicbom_zicbop_zicboz_ziccrse_zicntr_zicond_zicsr_zifencei_zihintntl_zihintpause_zihpm_zimop_zaamo_zalrsc_zawrs_zfa_zfbfmin_zfh_zfhmin_zca_zcb_zcd_zcmop_zba_zbb_zbc_zbs_zkt_zvbb_zvbc_zve32f_zve32x_zve64d_zve64f_zve64x_zvfbfmin_zvfbfwma_zvfh_zvfhmin_zvkb_zvkg_zvkned_zvknhb_zvksed_zvksh_zvkt_smaia_smstateen_ssaia_sscofpmf_ssnpm_sstc_svade_svinval_svnapot_svpbmt -mabi=lp64d -O2 hello.c -o hello-gcc`<br>`./hello-gcc` | 输出Hello, World! |
+| 7 | 编译并运行coremark（GCC）<br>`git clone https://github.com/eembc/coremark`<br>`cd coremark`<br>`make CC=riscv64-ruyisdk-linux-gnu-gcc XCFLAGS="-march=rv64imafdcvh_zicbom_zicbop_zicboz_ziccrse_zicntr_zicond_zicsr_zifencei_zihintntl_zihintpause_zihpm_zimop_zaamo_zalrsc_zawrs_zfa_zfbfmin_zfh_zfhmin_zca_zcb_zcd_zcmop_zba_zbb_zbc_zbs_zkt_zvbb_zvbc_zve32f_zve32x_zve64d_zve64f_zve64x_zvfbfmin_zvfbfwma_zvfh_zvfhmin_zvkb_zvkg_zvkned_zvknhb_zvksed_zvksh_zvkt_smaia_smstateen_ssaia_sscofpmf_ssnpm_sstc_svade_svinval_svnapot_svpbmt -mabi=lp64d -O2" compile`<br>`mv coremark.exe coremark-gcc`<br>`./coremark-gcc` | 输出coremark结果 |
+| 8 | 返回上级目录并退出ruyi GCC虚拟环境<br>`cd .. && ruyi-deactivate` | 成功退出虚拟环境 |
+| 9 | 创建并激活ruyi虚拟环境（LLVM）<br>`ruyi venv -t 'llvm-ruyisdk(22.1.8-ruyi.20260625)' manual --sysroot-from 'gnu-ruyisdk(0.20260625.0)' llvm-env`<br>`. llvm-env/bin/ruyi-activate` | 成功创建并激活虚拟环境 |
+| 10 | 验证LLVM版本<br>`clang --version` | 输出版本号 |
+| 11 | 编译并运行Hello World（LLVM）<br>`clang -march=rv64imafdcvh_zicbom_zicbop_zicboz_ziccrse_zicntr_zicond_zicsr_zifencei_zihintntl_zihintpause_zihpm_zimop_zaamo_zalrsc_zawrs_zfa_zfbfmin_zfh_zfhmin_zca_zcb_zcd_zcmop_zba_zbb_zbc_zbs_zkt_zvbb_zvbc_zve32f_zve32x_zve64d_zve64f_zve64x_zvfbfmin_zvfbfwma_zvfh_zvfhmin_zvkb_zvkg_zvkned_zvknhb_zvksed_zvksh_zvkt_smaia_smstateen_ssaia_sscofpmf_ssnpm_sstc_svade_svinval_svnapot_svpbmt -mabi=lp64d -O2 hello.c -o hello-llvm`<br>`./hello-llvm` | 输出Hello, World! |
+| 12 | 编译并运行coremark（LLVM）<br>`cd coremark && make clean`<br>`make CC=clang XCFLAGS="-march=rv64imafdcvh_zicbom_zicbop_zicboz_ziccrse_zicntr_zicond_zicsr_zifencei_zihintntl_zihintpause_zihpm_zimop_zaamo_zalrsc_zawrs_zfa_zfbfmin_zfh_zfhmin_zca_zcb_zcd_zcmop_zba_zbb_zbc_zbs_zkt_zvbb_zvbc_zve32f_zve32x_zve64d_zve64f_zve64x_zvfbfmin_zvfbfwma_zvfh_zvfhmin_zvkb_zvkg_zvkned_zvknhb_zvksed_zvksh_zvkt_smaia_smstateen_ssaia_sscofpmf_ssnpm_sstc_svade_svinval_svnapot_svpbmt -mabi=lp64d -O2" compile`<br>`mv coremark.exe coremark-llvm`<br>`./coremark-llvm` | 输出coremark结果 |
+| 13 | 返回上级目录并退出ruyi LLVM虚拟环境<br>`cd .. && ruyi-deactivate` | 成功退出虚拟环境 |
